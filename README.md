@@ -22,12 +22,91 @@
 - Users can submit comments with their name and comment content.
   
 ## API Endpoints
-- GET /videos: Get a list of videos with thumbnails from YouTube.
-- GET /products: Get a list of products based on VideoID.
-- GET /comments: Get a list of comments based on VideoID.
-- POST /comments: Submit a new comment to the server.
+### GET /videos
+
+Get a list of videos with thumbnails from YouTube.
+
+### Parameters
+
+None
+
+### Response
+```[
+  {
+    "_id": "64cc1c2da6ec67b5d5d3fc85",
+    "videoID": "video1",
+    "thumbnailURL": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+  },
+  {
+    "_id": "64cc1c2da6ec67b5d5d3fc86",
+    "videoID": "video2",
+    "thumbnailURL": "https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg"
+  }
+]
+```
+
+### GET /products
+Get a list of products based on VideoID.
+
+### Parameters
+videoID (required) - The unique identifier of the video.
+
+### Response
+```[
+  {
+    "_id": "64cc1c2da6ec67b5d5d3fc86",
+    "videoID": "video1",
+    "linkProduct": "https://www.tokopedia.com/product/12345",
+    "title": "Example Product",
+    "price": 100000
+  }
+]
+```
+
+### GET /comments
+Get a list of comments based on VideoID.
+
+### Parameters
+videoID (required) - The unique identifier of the video.
+
+### Response
+```[
+  {
+    "_id": "64cc1c2da6ec67b5d5d3fc87",
+    "videoID": "video1",
+    "username": "JohnDoe",
+    "comment": "Great video!",
+    "timestamp": "2023-08-03T12:34:56.789Z"
+  }
+]
+```
+
+### POST /comments
+Submit a new comment to the server.
+
+### Parameters
+```{
+  "videoID": "video1",
+  "username": "JohnDoe",
+  "comment": "Great video!"
+}
+```
+
+### Response
+```{
+  "success": true,
+  "comment": {
+    "_id": "64cc1c2da6ec67b5d5d3fc87",
+    "videoID": "video1",
+    "username": "JohnDoe",
+    "comment": "Great video!",
+    "timestamp": "2023-08-03T12:34:56.789Z"
+  }
+}
+```
 
 ## Database Structure
+
 The database for the Tokopedia Play Clone project uses MongoDB to store various data related to videos, products, and comments. Below is the structure of the collections in the MongoDB database:
 ### Videos Collection
 The **videos** collection stores information about the videos available on Tokopedia Play Clone. Each document in this collection represents a video and contains the following fields:
